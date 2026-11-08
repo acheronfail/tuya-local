@@ -401,6 +401,126 @@ entities:
         type: base64
         optional: true
         name: value
+  # DP 135: enable 1, enable 2, start 1 HH/MM, end 1 HH/MM,
+  # start 2 HH/MM, end 2 HH/MM. Keep masks at the full 10-byte width.
+  - entity: switch
+    name: Timer 1
+    category: config
+    icon: "mdi:timer"
+    dps:
+      - id: 135
+        type: base64
+        optional: true
+        name: switch
+        mask: "FF000000000000000000"
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: 1
+            value: true
+  - entity: time
+    translation_key: timer_x
+    translation_placeholders:
+      x: "1 on"
+    category: config
+    dps:
+      - id: 135
+        type: base64
+        optional: true
+        name: hour
+        mask: "0000FF00000000000000"
+        range:
+          min: 0
+          max: 23
+      - id: 135
+        type: base64
+        optional: true
+        name: minute
+        mask: "000000FF000000000000"
+        range:
+          min: 0
+          max: 59
+  - entity: time
+    translation_key: timer_x
+    translation_placeholders:
+      x: "1 off"
+    category: config
+    dps:
+      - id: 135
+        type: base64
+        optional: true
+        name: hour
+        mask: "00000000FF0000000000"
+        range:
+          min: 0
+          max: 23
+      - id: 135
+        type: base64
+        optional: true
+        name: minute
+        mask: "0000000000FF00000000"
+        range:
+          min: 0
+          max: 59
+  - entity: switch
+    name: Timer 2
+    category: config
+    icon: "mdi:timer"
+    dps:
+      - id: 135
+        type: base64
+        optional: true
+        name: switch
+        mask: "00FF0000000000000000"
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: 1
+            value: true
+  - entity: time
+    translation_key: timer_x
+    translation_placeholders:
+      x: "2 on"
+    category: config
+    dps:
+      - id: 135
+        type: base64
+        optional: true
+        name: hour
+        mask: "000000000000FF000000"
+        range:
+          min: 0
+          max: 23
+      - id: 135
+        type: base64
+        optional: true
+        name: minute
+        mask: "00000000000000FF0000"
+        range:
+          min: 0
+          max: 59
+  - entity: time
+    translation_key: timer_x
+    translation_placeholders:
+      x: "2 off"
+    category: config
+    dps:
+      - id: 135
+        type: base64
+        optional: true
+        name: hour
+        mask: "0000000000000000FF00"
+        range:
+          min: 0
+          max: 23
+      - id: 135
+        type: base64
+        optional: true
+        name: minute
+        mask: "000000000000000000FF"
+        range:
+          min: 0
+          max: 59
   - entity: binary_sensor
     name: Polarity
     category: diagnostic

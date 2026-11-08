@@ -73,6 +73,7 @@ entities:
           - dps_val: true
             value: fahrenheit
   - entity: sensor
+    # The device reports whole degrees, despite the cloud schema scale of 1.
     name: Chassis temperature
     class: temperature
     category: diagnostic
@@ -83,8 +84,6 @@ entities:
         name: sensor
         unit: C
         class: measurement
-        mapping:
-          - scale: 10
   - entity: sensor
     name: Electrolytic voltage
     class: voltage
